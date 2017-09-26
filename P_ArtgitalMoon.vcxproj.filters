@@ -176,9 +176,6 @@
     <ClInclude Include="src\mapManager.h">
       <Filter>src\mapManager</Filter>
     </ClInclude>
-    <ClInclude Include="src\tiles.h">
-      <Filter>src\mapManager</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
