@@ -207,6 +207,18 @@ void mapManager::displayTreature(int id)
 }
 
 //-------------------------------
+void mapManager::getTreature(int id, string fbid)
+{
+	auto iter = _treasure.find(id);
+	if (iter != _treasure.end())
+	{
+		iter->second.whoFound = fbid;
+		_map[(int)iter->second.pos.y][(int)iter->second.pos.x]._type = eTileEmpty;
+		updateMiniMap();
+	}
+}
+
+//-------------------------------
 void mapManager::goback()
 {
 	hide();

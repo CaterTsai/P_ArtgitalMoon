@@ -46,6 +46,9 @@
     <ClCompile Include="src\mapManager.cpp">
       <Filter>src\mapManager</Filter>
     </ClCompile>
+    <ClCompile Include="src\displayer.cpp">
+      <Filter>src\displayer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -92,6 +95,9 @@
     </Filter>
     <Filter Include="src\mapManager">
       <UniqueIdentifier>{28385cbe-dc4e-40f0-b409-14750aa73190}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\displayer">
+      <UniqueIdentifier>{a461d9c0-7d84-42d7-8388-a059e2019368}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="src\mapManager.h">
       <Filter>src\mapManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\displayer.h">
+      <Filter>src\displayer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

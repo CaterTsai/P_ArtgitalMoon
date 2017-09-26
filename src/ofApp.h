@@ -3,6 +3,7 @@
 #include "constParameter.h"
 #include "mapManager.h"
 #include "liveConn.h"
+#include "displayer.h"
 
 class ofApp : public ofBaseApp{
 
@@ -28,29 +29,17 @@ private:
 #pragma region message
 public:
 	void setupMessage();
-	void updateMessage(float delta);
-	void drawMessage();
-	void setDisplay(eArtgitalCharacter type);
 	
 private:
-	bool _isDisplay;
-	float _messageTimer;
-	eArtgitalCharacter _displayType;
-	map<eArtgitalCharacter, ofImage> _message;
+	displayer<eArtgitalCharacter> _message;
 #pragma endregion
 
 #pragma region Treasure
 public:
 	void setupTreasure();
-	void updateTreasure(float delta);
-	void drawTreasure();
-	void setTreasureDisplay(int treasure);
 
 private:
-	bool _isTreasureDisplay;
-	float _treasureTimer;
-	eArtgitalCharacter _displayType;
-	map<eArtgitalCharacter, ofImage> _message;
+	displayer<eTreature> _treasure;
 #pragma endregion
 
 

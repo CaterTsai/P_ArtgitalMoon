@@ -10,6 +10,7 @@ void ofApp::setup()
 	ofAddListener(_map.artgitalEvent, this, &ofApp::onTouchArtgital);
 	ofAddListener(_map.treasureEvent, this, &ofApp::onTouchTreasure);
 	setupMessage();
+	setupTreasure();
 	_timer = ofGetElapsedTimef();
 }
 
@@ -20,7 +21,8 @@ void ofApp::update()
 	_timer += delta;
 
 	_map.update(delta);
-	updateMessage(delta);
+	_message.update(delta);
+	_treasure.update(delta);
 	_liveConn.update(delta);
 
 	handleCommand(_liveConn.getCommand());
@@ -33,7 +35,9 @@ void ofApp::draw()
 	_map.draw(cMapPosition.x, cMapPosition.y, cMapWidth, cMapHeight);
 	_map.drawMini(cMapMiniPosition.x, cMapMiniPosition.y, cMapMiniWidth, cMapMiniHeight);
 	_map.drawCover(cMapPosition.x, cMapPosition.y, cMapWidth, cMapHeight);
-	drawMessage();
+	_message.draw(cMapPosition.x, cMapPosition.y, cMessageWidth, cMessageHeight);
+	_treasure.draw(cMapPosition.x, cMapPosition.y, cTreatureWidth, cTreatureHeight);
+
 	//Debug
 	_map.drawInfo(0, 20);
 }
@@ -79,6 +83,8 @@ void ofApp::keyPressed(int key)
 //--------------------------------------------------------------
 void ofApp::onTouchTreasure(int & id)
 {
+	_treasure.setDisplay((eTreature)id);
+	_map.getTreature(id);
 }
 
 //--------------------------------------------------------------
@@ -92,7 +98,8 @@ void ofApp::onTouchArtgital(int & id)
 	{
 		_map.goback();
 	}
-	setDisplay((eArtgitalCharacter)id);
+
+	_message.setDisplay((eArtgitalCharacter)id);
 
 }
 
@@ -100,74 +107,47 @@ void ofApp::onTouchArtgital(int & id)
 //--------------------------------------------------------------
 void ofApp::setupMessage()
 {
-	
-	_message[artgitalJackie] = ofImage("images/msg/jackie.png");
-	_message[artgitalAlvin] = ofImage("images/msg/alvin.png");
-	_message[artgitalLeoH] = ofImage("images/msg/leoH.png");
-	_message[artgitalJames] = ofImage("images/msg/james.png");
-	_message[artgitalNora] = ofImage("images/msg/nora.png");
-	_message[artgitalJerry] = ofImage("images/msg/jerry.png");
-	_message[artgitalWill] = ofImage("images/msg/will.png");
-	_message[artgitalJonathan] = ofImage("images/msg/jonathan.png");
-	_message[artgitalJoey] = ofImage("images/msg/joey.png");
-	_message[artgitalLeoC] = ofImage("images/msg/leoC.png");
-	_message[artgitalIan] = ofImage("images/msg/ian.png");
-	_message[artgitalStan] = ofImage("images/msg/stan.png");
-	_message[artgitalCater] = ofImage("images/msg/cater.png");
-	_message[artgitalTina] = ofImage("images/msg/tina.png");
-	_message[artgitalVader] = ofImage("images/msg/vader.png");
-	_message[artgitalYoncky] = ofImage("images/msg/yoncky.png");
-	_message[artgitalAka] = ofImage("images/msg/aka.png");
-	_message[artgitalMing] = ofImage("images/msg/ming.png");
-
-	_isDisplay = false;
-}
-
-//--------------------------------------------------------------
-void ofApp::updateMessage(float delta)
-{
-	if (_isDisplay)
-	{
-		_messageTimer -= delta;
-		if (_messageTimer <= 0.0)
-		{
-			_isDisplay = false;
-		}
-	}
-}
-
-//--------------------------------------------------------------
-void ofApp::drawMessage()
-{
-	if (!_isDisplay)
-	{
-		return;
-	}
-
-	ofPushStyle();
-	{
-		ofSetColor(255);
-		_message[_displayType].getTextureReference().setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
-		_message[_displayType].draw(cMapPosition, cMapWidth, (float)cMapWidth / _message[_displayType].getWidth() * _message[_displayType].getHeight());
-	}
-	ofPopStyle();
-}
-
-//--------------------------------------------------------------
-void ofApp::setDisplay(eArtgitalCharacter type)
-{
-	_isDisplay = true;
-	_displayType = type;
-	_messageTimer = cMessageDisplayTime;
-	
+	_message.add(artgitalJackie, "images/msg/jackie.png");
+	_message.add(artgitalAlvin, "images/msg/alvin.png");
+	_message.add(artgitalLeoH, "images/msg/leoH.png");
+	_message.add(artgitalJames, "images/msg/james.png");
+	_message.add(artgitalNora, "images/msg/nora.png");
+	_message.add(artgitalJerry, "images/msg/jerry.png");
+	_message.add(artgitalWill, "images/msg/will.png");
+	_message.add(artgitalJonathan, "images/msg/jonathan.png");
+	_message.add(artgitalJoey, "images/msg/joey.png");
+	_message.add(artgitalLeoC, "images/msg/leoC.png");
+	_message.add(artgitalIan, "images/msg/ian.png");
+	_message.add(artgitalStan, "images/msg/stan.png");
+	_message.add(artgitalCater, "images/msg/cater.png");
+	_message.add(artgitalTina, "images/msg/tina.png");
+	_message.add(artgitalVader, "images/msg/vader.png");
+	_message.add(artgitalYoncky, "images/msg/yoncky.png");
+	_message.add(artgitalAka, "images/msg/aka.png");
+	_message.add(artgitalMing, "images/msg/ming.png");
+	_message.setDuration(cMessageDisplayTime);
 }
 #pragma endregion
+
+#pragma region Treature
+//--------------------------------------------------------------
+void ofApp::setupTreasure()
+{
+	_treasure.add(treatrue1, "images/treasure/1.png");
+	_treasure.add(treatrue2, "images/treasure/2.png");
+	_treasure.add(treatrue3, "images/treasure/3.png");
+	_treasure.add(treatrue4, "images/treasure/4.png");
+	_treasure.add(treatrue5, "images/treasure/5.png");
+	_treasure.setDuration(cTreatureDisplayTime);
+}
+#pragma endregion
+
 
 #pragma region Live Conn
 //--------------------------------------------------------------
 void ofApp::handleCommand(command next)
 {
-	if (next._eType == eCommand::eCommUnknow)
+	if (next._eType == eCommand::eCommUnknow || !_canCtrl)
 	{
 		return;
 	}

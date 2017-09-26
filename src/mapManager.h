@@ -107,6 +107,7 @@ public:
 	
 	ofVec2f getPos();
 	void displayTreature(int id);
+	void getTreature(int id, string fbid = "");
 	void goback();
 
 private:

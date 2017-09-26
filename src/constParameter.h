@@ -25,6 +25,15 @@ enum eArtgitalCharacter : int
 	, artgitalDefault
 };
 
+enum eTreature : int
+{
+	treatrue1 = 0
+	, treatrue2
+	, treatrue3
+	, treatrue4
+	, treatrue5
+};
+
 
 //live Connector
 const string cFBToken = "EAAEVUYcZAg7EBAB98I5VCk2ZCmt3qqyhxCZBkTKUidPkpN4lOwye7AdyW4ZAaYiRfhZABoEE6LoQHF9m1aC9Usm0jbLP1SokOpSKL3tf9DVy7MnVkOKOUXUlZA0Ka3kiJsnwvaJHl9oFSsH1cm1kFc02l1Q2Gbovqd9XtwgwSUE3b3PSJ8qlK6EZAKIUSpWdY74vLWj13YcUHk2IXXbZBpso5LxCVGaQpgWZAfd2g4z1uYHKxl10HmVKF";
@@ -61,3 +70,10 @@ const int cMapTreasureType = 5;
 
 //Message
 const float cMessageDisplayTime = 5.0;
+const int cMessageWidth = cMapWidth;
+const int cMessageHeight = 250;
+
+//Treature
+const float cTreatureDisplayTime = 10.0;
+const int cTreatureWidth = cMapWidth;
+const int cTreatureHeight = cMapHeight;
